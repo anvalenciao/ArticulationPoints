@@ -1,10 +1,16 @@
 \documentclass[9pt]{entcs}
 
+% Glossary of terms
+\usepackage{glossaries}
+\makeglossaries
+\include{document/GlossaryTerms/glossary-terms}
+
 \begin{document}
 	
 	\input{document/Cover/cover}
-	\input{document/Introduction/introduction}
+	\input{document/Introduction/introduction}	
 	\input{document/LiteratureReview/literature-review}
+	\printglossary[title=Glosario de términos, toctitle=Lista de términos]
 	\input{document/Bibliography/bibliography}
 
 \end{document}
