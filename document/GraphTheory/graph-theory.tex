@@ -1,0 +1,14 @@
+% https://books.google.com.co/books?hl=es&lr=&id=m3QTSMYm5rkC&oi=fnd&pg=PR5&dq=graph&ots=IrFbjkE1Lk&sig=m9nxqvLmoJxZDQLJRq09Loqp50M&redir_esc=y#v=onepage&q=graph&f=false
+% https://oeis.org/wiki/List_of_LaTeX_mathematical_symbols
+% https://www.overleaf.com/learn/latex/Mathematical_expressions
+% https://www.python-course.eu/graphs_python.php
+% http://www.unipamplona.edu.co/unipamplona/portalIG/home_23/recursos/general/11072012/grafo3.pdf
+% https://www.geeksforgeeks.org/difference-between-bfs-and-dfs/
+% https://cs.stackexchange.com/questions/11177/how-to-check-whether-a-graph-is-connected-in-polynomial-time
+% https://www.geeksforgeeks.org/difference-between-deterministic-and-non-deterministic-algorithms/
+
+\section{Teoría de grafos}\label{graph theory}
+En matemáticas y en ciencias de la computación, la teoría de grafos estudia las propiedades de los grafos. Un grafo \( G(V,E) \) es una colección de puntos, llamados vértices o nodos \( V = \{ v_1, v_2, \dots \} \), y segmentos de línea que conectan esos puntos, llamados aristas o arcos (en inglés \textit{edges}) \( E = \{ e_1, e_2, \dots \} \) \cite{even2011graph}.
+
+\subsection{Conexo}
+Un grafo \( G \) es conexo, si por cada dos vértices \( u \) y \( v \), hay un camino (finito) que comienza en \( u \) y termina en \( v \) \cite{even2011graph}. Para verificar si un grafo \( G \) es conexo, se puede aplicar un \gls{deterministic algorithm} habitual, búsqueda en anchura en inglés \acrfull{bfs} o búsqueda en profundidad en inglés \acrfull{dfs}.

@@ -1,10 +1,18 @@
 % https://www.overleaf.com/learn/latex/Glossaries
+% https://xlinux.nist.gov/dads/HTML/deterministicAlgorithm.html
 
 % Búsqueda en profundidad
 \newacronym{dfs}{DFS}{\textit{Depth First Search}}
+\newacronym{bfs}{BFS}{\textit{Breadth First Search}}
 
-\newglossaryentry{graph}
+\newglossaryentry{deterministic algorithm}
 {
-	name=grafo,
-	description={Es una colección de puntos, llamados vértices o nodos, y segmentos de línea que conectan esos puntos, llamados aristas o arcos. Existen dos tipos de grafos, \textbf{dirigido}: es un tipo de grafo en el cual las aristas tienen un sentido definido, \textbf{no dirigido}: las aristas son relaciones simétricas y no apuntan en ningún sentido.}
+	name=algoritmo determinista,
+	description={Su comportamiento se puede predecir completamente a partir de la entrada, el algoritmo realiza los mismos cálculos y ofrece los mismos resultados\cite{Black2009_DeterministicAlgorithm}}
+}
+
+\newglossaryentry{non-deterministic algorithm}
+{
+	name=algoritmo no determinista,
+	description={Conceptualmente, un algoritmo con más de un paso permitido en ciertos momentos y que siempre da el paso correcto o el mejor}
 }
