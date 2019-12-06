@@ -10,10 +10,14 @@
 
 % http://data-mining.philippe-fournier-viger.com/introduction-frequent-subgraph-mining/
 
+% http://www.analytictech.com/networks/graphtheory.htm
+
 % how to determine if a graph is connected
 
+% https://es.wikipedia.org/wiki/Grafo_conexo
+
 \section{Teoría de grafos}\label{graph theory}
-En matemáticas y en ciencias de la computación, la teoría de grafos estudia las propiedades de los grafos. Un grafo \( G(V,E) \) es una colección de puntos, llamados vértices o nodos \( V = \{ v_1, v_2, \dots \} \), y segmentos de línea que conectan esos puntos, llamados aristas o arcos (en inglés \textit{edges}) \( E = \{ e_1, e_2, \dots \} \); cada arista \( e \) tiene dos \textit{puntos finales}, que son vértices. Se escribe \( u \overset{e}{-} v \), y significa que la arista \( e \) incide sobre los vértices \( u \) y \( v \); en este caso se puede decir que \( e \) conecta los vértices \( u \) y \( v \), o que los vértices \( u \) y \( v \) son adyacentes \cite{even2011graph}.
+En matemáticas y en ciencias de la computación, la teoría de grafos estudia las propiedades de los grafos. Un grafo \( G(V,E) \) es una colección de puntos, llamados vértices o nodos \( V = \{ v_1, v_2, \dots \} \), y segmentos de línea que conectan esos puntos, llamados aristas o arcos (en inglés \textit{edges}) \( E = \{ e_1, e_2, \dots \} \); cada arista \( e \) tiene dos \textit{\gls{endpoints}}, que son vértices. Se escribe \( u \overset{e}{-} v \), y significa que la arista \( e \) incide sobre los vértices \( u \) y \( v \); en este caso se puede decir que \( e \) conecta los vértices \( u \) y \( v \), o que los vértices \( u \) y \( v \) son \gls{adjacents} \cite{even2011graph}.
 
 \begin{figure}[H]
 	\centering
@@ -34,7 +38,7 @@ Un grafo \( G \) es conexo, si por cada dos vértices \( u \) y \( v \), hay un 
 
 % https://personales.unican.es/corcuerp/progcomp/slides/grafos.pdf
 \subsection{Grafo dirigido o digrafo}
-Un digrafo o grafo dirigido \( G(V,E) \) se define de manera similar a un grafo, excepto que el par de \textit{puntos finales} \( (u, v) \) de cada arista ahora está ordenado. Se escribe \( u \xrightarrow{\text{e}} v \), dónde \( u \) es el vértice inicial de \( e \); y \( v \) es el vértice final de \( e \). Se dice que la arista \( e \) está dirigida de \( u \) a \( v \) \cite{even2011graph}.
+Un digrafo o grafo dirigido \( G(V,E) \) se define de manera similar a un grafo, excepto que el par de \textit{\gls{endpoints}} \( (u, v) \) de cada arista ahora está ordenado. Se escribe \( u \xrightarrow{\text{e}} v \), dónde \( u \) es el vértice inicial de \( e \); y \( v \) es el vértice final de \( e \). Se dice que la arista \( e \) está dirigida de \( u \) a \( v \) \cite{even2011graph}.
 
 \begin{figure}[H]
 	\centering
