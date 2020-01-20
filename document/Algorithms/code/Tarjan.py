@@ -16,8 +16,7 @@ class Graph:
 	def addEdge(self,u,v): 
 		self.graph[u].append(v) 
 		self.graph[v].append(u)
-		var_dump(self.graph)
-    #print vars(graph)
+		# var_dump(self.graph)
 
 	'''A recursive function that find articulation points 
 	using DFS traversal 
@@ -27,7 +26,6 @@ class Graph:
 	parent[] --> Stores parent vertices in DFS tree 
 	ap[] --> Store articulation points'''
 	def APUtil(self,u, visited, ap, parent, low, disc): 
-		var_dump(u)
 		#Count of children in current node 
 		children =0
 
@@ -40,7 +38,7 @@ class Graph:
 		self.Time += 1
 
 		#Recur for all the vertices adjacent to this vertex 
-		for v in self.graph[u]: 
+		for v in self.graph[u]:
 			# If v is not visited yet, then make it a child of u 
 			# in DFS tree and recur for it 
 			if visited[v] == False : 
@@ -86,8 +84,9 @@ class Graph:
 			if visited[i] == False: 
 				self.APUtil(i, visited, ap, parent, low, disc) 
 
+		# var_dump(ap)
 		for index, value in enumerate (ap): 
-			if value == True: print index, 
+			if value == True: print(index)
 
 # Create a graph given in the above diagram 
 '''
@@ -106,7 +105,7 @@ g2 = Graph(4)
 g2.addEdge(0, 1) 
 g2.addEdge(1, 2) 
 g2.addEdge(2, 3) 
-print "\nArticulation points in second graph "
+print ("\nArticulation points in second graph ")
 g2.AP() 
 '''
 g3 = Graph (7) 

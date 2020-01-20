@@ -1,4 +1,7 @@
 // https://medium.com/@ziyoshams/graphs-in-javascript-cc0ed170b156
+// https://github.com/mission-peace/interview/blob/master/src/com/interview/graph/ArticulationPoint.java
+// https://en.wikipedia.org/wiki/Biconnected_component
+
 class Graph {
   constructor(vertices) {
     this.V = vertices;
@@ -31,6 +34,7 @@ class Graph {
       if (visited[v] == false) {
         parent[v] = u;
         children += 1;
+
         this.APUtil(v, visited, ap, parent, low, disc);
         
         low[u] = Math.min(low[u], low[v]);
@@ -49,7 +53,7 @@ class Graph {
   }
 
   AP() {
-    let visited = new Array(this.V),
+    var visited = new Array(this.V),
         disc =  new Array(this.V), 
         low =  new Array(this.V),
         parent =  new Array(this.V),
@@ -61,10 +65,10 @@ class Graph {
         visited[i] = false; 
         ap[i] = false;
     }
-
+    
     for (let i = 0; i < this.V; i++) {
-      if (visited[i] == false) {
-        this.APUtil(i, visited, disc, low, parent, ap); 
+      if (visited[i] == false) {        
+        this.APUtil(i, visited, ap, parent, low, disc); 
       }
     }
 
@@ -89,5 +93,15 @@ g1.addEdge(0, 2);
 g1.addEdge(2, 1);
 g1.addEdge(0, 3);
 g1.addEdge(3, 4);*/
+
+/*g1 = new Graph(7);
+g1.addEdge(0, 1); 
+g1.addEdge(1, 2); 
+g1.addEdge(2, 0); 
+g1.addEdge(1, 3); 
+g1.addEdge(1, 4); 
+g1.addEdge(1, 6); 
+g1.addEdge(3, 5); 
+g1.addEdge(4, 5);*/
 g1.AP();
 //console.log(g1);

@@ -10,6 +10,9 @@
 % https://math-linux.com/latex-26/faq/latex-faq/article/how-to-write-algorithm-and-pseudocode-in-latex-usepackage-algorithm-usepackage-algorithmic
 % https://tex.stackexchange.com/questions/89574/language-option-supported-in-listings
 % how to determine if a graph is connected
+% https://github.com/mission-peace/interview/blob/master/src/com/interview/graph/ArticulationPoint.java
+% https://en.wikipedia.org/wiki/Biconnected_component
+% https://en.wikipedia.org/wiki/Robert_Tarjan
 
 \lstdefinelanguage{JavaScript}{
 	keywords={break, case, catch, continue, debugger, default, delete, do, else, finally, for, function, if, in, instanceof, new, return, switch, try, typeof, var, void, while, with},
@@ -42,6 +45,9 @@
 \renewcommand{\lstlistingname}{Algoritmo}% Listing -> Algorithm
 \renewcommand{\lstlistlistingname}{Lista de \lstlistingname s}% List of Listings -> List of Algorithms
 
+%\algnewcommand\algorithmicforeach{\textbf{for each}}
+%\algdef{S}[FOR]{ForEach}[1]{\algorithmicforeach\ #1\ \algorithmicdo}
+
 \section{Algoritmos}\label{algorithms}
 lorem ipsum dolor sit amet.
 /home/andres/Documentos/ArticulationPoints/document/Algorithms/code
@@ -49,5 +55,40 @@ lorem ipsum dolor sit amet.
 \subsection{Algoritmo de Tarjan}
 El algoritmo de Tarjan para encontrar puntos de articulación
 \subsubsection{Pseudocódigo}
+\begin{algorithm}
+	\caption{Linear time depth first search}
+	\begin{algorithmic}		
+		\Function{GetArticulationPoints}{$i,d$}
+			\State $visited[i] \leftarrow true$
+			\State $depth[i] \leftarrow d$
+			\State $low[i] \leftarrow d$
+			\State $childCount \leftarrow 0$
+			\State $isArticulation \leftarrow false$
+			%\leq \geq \neq
+			\ForAll{$ni$ \textbf{in} $adj[i]$}
+				\If{not $visited[ni]$}
+					\State $parent[ni] \leftarrow i$
+					\State GetArticulationPoints($ni, d + 1$)
+					\State $childCount \leftarrow childCount + 1$
+					
+					\If{$low[ni] \geq depth[i]$}
+						\State $isArticulation \leftarrow true$
+					\EndIf
+					
+					\State $low[i] \leftarrow Min(low[i], low[ni])$
+					
+				\ElsIf{$ni \neq parent[i]$}
+					\State $low[i] \leftarrow Min(low[i], depth[ni])$
+				\EndIf
+			\EndFor
+			
+			\If{($parent[i] \neq null$ \textbf{and} $isArticulation$) \textbf{or} ($parent[i] = null$ \textbf{and} $childCount > 1$)}
+				\State 
+				\Return Output i as articulation point
+			\EndIf
+		\EndFunction
+	\end{algorithmic}
+\end{algorithm}
+
 \lstinputlisting[label=samplecode, caption=sample code, language=JavaScript]{document/Algorithms/code/Tarjan.js}
 \subsubsection{Complejidad}
