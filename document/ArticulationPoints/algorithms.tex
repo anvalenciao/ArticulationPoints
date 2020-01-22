@@ -13,6 +13,8 @@
 % https://github.com/mission-peace/interview/blob/master/src/com/interview/graph/ArticulationPoint.java
 % https://en.wikipedia.org/wiki/Biconnected_component
 % https://en.wikipedia.org/wiki/Robert_Tarjan
+% https://en.wikipedia.org/wiki/Kosaraju%27s_algorithm
+% https://en.wikipedia.org/wiki/Dilworth%27s_theorem
 
 \lstdefinelanguage{JavaScript}{
 	keywords={break, case, catch, continue, debugger, default, delete, do, else, finally, for, function, if, in, instanceof, new, return, switch, try, typeof, var, void, while, with},
@@ -45,22 +47,16 @@
 \renewcommand{\lstlistingname}{Algoritmo}% Listing -> Algorithm
 \renewcommand{\lstlistlistingname}{Lista de \lstlistingname s}% List of Listings -> List of Algorithms
 
-%\algnewcommand\algorithmicforeach{\textbf{for each}}
-%\algdef{S}[FOR]{ForEach}[1]{\algorithmicforeach\ #1\ \algorithmicdo}
-
-\section{Algoritmos}\label{algorithms}
-lorem ipsum dolor sit amet.
-/home/andres/Documentos/ArticulationPoints/document/Algorithms/code
 
 \subsection{Algoritmo de Tarjan}
-El algoritmo de Tarjan para encontrar puntos de articulación
+El algoritmo de Tarjan se basa en una búsqueda en profundidad \acrshort{dfs}, la complejidad del tiempo de ejecución para este algoritmo es lineal, la misma del \acrshort{dfs}, \( O(V + E) \). La complejidad espacial es igual al número total de vértices \( O(V) \) \cite{Wikipedia.BiconnectedComponent}.
 \subsubsection{Pseudocódigo}
 \begin{algorithm}
-	\caption{Linear time depth first search}
-	\begin{algorithmic}		
+	%\caption{Linear time depth first search}
+	\begin{algorithmic}[1]
 		\Function{GetArticulationPoints}{$i,d$}
 			\State $visited[i] \leftarrow true$
-			\State $depth[i] \leftarrow d$
+			\State $disc[i] \leftarrow d$
 			\State $low[i] \leftarrow d$
 			\State $childCount \leftarrow 0$
 			\State $isArticulation \leftarrow false$
@@ -71,14 +67,14 @@ El algoritmo de Tarjan para encontrar puntos de articulación
 					\State GetArticulationPoints($ni, d + 1$)
 					\State $childCount \leftarrow childCount + 1$
 					
-					\If{$low[ni] \geq depth[i]$}
+					\If{$low[ni] \geq disc[i]$}
 						\State $isArticulation \leftarrow true$
 					\EndIf
 					
 					\State $low[i] \leftarrow Min(low[i], low[ni])$
 					
 				\ElsIf{$ni \neq parent[i]$}
-					\State $low[i] \leftarrow Min(low[i], depth[ni])$
+					\State $low[i] \leftarrow Min(low[i], disc[ni])$
 				\EndIf
 			\EndFor
 			
@@ -91,5 +87,18 @@ El algoritmo de Tarjan para encontrar puntos de articulación
 \end{algorithm}
 
 % https://medium.com/@ziyoshams/graphs-in-javascript-cc0ed170b156
-\lstinputlisting[label=samplecode, caption=sample code, language=JavaScript]{document/Algorithms/code/Tarjan.js}
-\subsubsection{Complejidad}
+\subsubsection{Implementación}
+En el grafo que se muestra en la \autoref{fig:graph-dfs}, se observa la representación del mismo en un árbol \acrshort{dfs}, donde un vértice \( u \) es padre de otro vértice \( v \) y \( u \) es un punto de articulación si satisface una de las siguientes dos condiciones:
+\begin{enumerate}
+	\item \( u \) es la raíz del árbol DFS y tiene al menos dos hijos independientes (no están conectados entre sí).
+	\item Si \( u \) no es la raíz comprueba si \( low[v] \) es mayor o igual a \( disc[u] \).
+\end{enumerate}
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.8\linewidth]{document/ArticulationPoints/images/graph-dfs}
+	\caption{Punto de articulación. (a) Grafo con punto de articulación en el vértice \( v_2 \). (b) Árbol DFS del grafo y \textit{Back Edge.}}
+	\label{fig:graph-dfs}
+\end{figure}
+
+El siguiente código en JavaScript, es la implementación del algoritmo de Tarjan. No sé recomienda ejecutarlo en ambientes de producción, se desarrollo en este lenguaje por su facilidad de ejecutar.
+\lstinputlisting[label=JSTarjan, caption=Código en JavaScript, language=JavaScript]{document/ArticulationPoints/code/Tarjan.js}

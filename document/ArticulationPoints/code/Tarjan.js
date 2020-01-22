@@ -1,9 +1,12 @@
-// Test: Ubuntu 19.04 / node v10.15.2
-// Command: node /{path}/Tarjan.js
+/**
+ * Test: Ubuntu 19.04 / node v10.15.2
+ * Command: node /{path}/Tarjan.js
+ * Based on: https://www.geeksforgeeks.org/articulation-points-or-cut-vertices-in-a-graph/
+ */
 class Graph {
   constructor() {
     this.graph = new Object();
-    this.time = 0;
+    this.time = 0; // Valor actual del tiempo de descubrimiento.
   }
 
   addEdge(u, v) {
@@ -20,7 +23,7 @@ class Graph {
   }
 
   DFS(u = 0, visited = [], ap = [], parent = [], low = [], disc = []) {
-    let children = 0;
+    let childCount = 0;
     visited[u] = true;
 
     disc[u] = this.time; 
@@ -30,12 +33,12 @@ class Graph {
     for (const v of this.graph[u]) {
       if (visited[v] == false) {
         parent[v] = u;
-        children += 1;
+        childCount += 1;
 
         this.DFS(v, visited, ap, parent, low, disc);
         
         low[u] = Math.min(low[u], low[v]);
-        if (parent[u] == -1 && children > 1) {
+        if (parent[u] == -1 && childCount > 1) {
           ap[u] = true;
         }
 
@@ -50,12 +53,12 @@ class Graph {
   }
 
   ArticulationPoint() {
-    let V =  Object.keys(g1.graph).length; // Vertices
-    let visited = new Array(V),
-        disc =  new Array(V), 
-        low =  new Array(V),
-        parent =  new Array(V),
-        ap = new Array(V);
+    let V =  Object.keys(this.graph).length; // Numero de vertices.
+    let visited = new Array(V), // Denota si se visita o no un vertice durante el DFS.
+        disc =  new Array(V), // Almacenan el tiempo de descubrimiento de cada vertice.
+        low =  new Array(V), // Almacena, para cada vertice, el tiempo descubierto del vertice mas antiguo.
+        parent =  new Array(V), // Almacena el padre de cada vertice en el arbol DFS.
+        ap = new Array(V); // Almacena los puntos de articulacion.
     
     for (let i = 0; i < V; i++) 
     {
@@ -72,16 +75,20 @@ class Graph {
 
     for (let i = 0; i < V; i++) {
       if (ap[i] == true) {
-        console.log(i + " ");
+        // Imprime los puntos de articulacion.
+        console.log(i);
       }
     }
 
   } 
 }
 
-// g1 = {0: [1], 1: [0, 2], 2: [1, 3], 3: [2]};
-g1 = new Graph();
-g1.addEdge(0, 1);
-g1.addEdge(1, 2);
-g1.addEdge(2, 3);
-g1.ArticulationPoint();
+// { 0: [ 1, 3 ], 1: [ 0, 2 ], 2: [ 1, 3, 4, 5 ], 3: [ 0, 2 ], 4: [ 2 ], 5: [ 2 ] }
+g = new Graph();
+g.addEdge(0, 1);
+g.addEdge(0, 3);
+g.addEdge(1, 2);
+g.addEdge(3, 2);
+g.addEdge(2, 4);
+g.addEdge(2, 5);
+g.ArticulationPoint();
