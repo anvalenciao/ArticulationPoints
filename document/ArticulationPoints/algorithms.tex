@@ -47,12 +47,12 @@
 \renewcommand{\lstlistingname}{Algoritmo}% Listing -> Algorithm
 \renewcommand{\lstlistlistingname}{Lista de \lstlistingname s}% List of Listings -> List of Algorithms
 
-
 \subsection{Algoritmo de Tarjan}
-El algoritmo de Tarjan se basa en una búsqueda en profundidad \acrshort{dfs}, la complejidad del tiempo de ejecución para este algoritmo es lineal, la misma del \acrshort{dfs}, \( O(V + E) \). La complejidad espacial es igual al número total de vértices \( O(V) \) \cite{Wikipedia.BiconnectedComponent}.
+El algoritmo de Tarjan se basa en una búsqueda en profundidad \acrshort{dfs} y permite encontrar los puntos de articulación en un grafo, la complejidad del tiempo de ejecución para este algoritmo es lineal, la misma del \acrshort{dfs}, \( O(V + E) \). La complejidad espacial es igual al número total de vértices \( O(V) \) \cite{Wikipedia.BiconnectedComponent}.
+\newpage
 \subsubsection{Pseudocódigo}
-\begin{algorithm}
-	%\caption{Linear time depth first search}
+\begin{algorithm}[H]
+	%\caption{Linear time - DFS}
 	\begin{algorithmic}[1]
 		\Function{GetArticulationPoints}{$i,d$}
 			\State $visited[i] \leftarrow true$
@@ -88,7 +88,7 @@ El algoritmo de Tarjan se basa en una búsqueda en profundidad \acrshort{dfs}, l
 
 % https://medium.com/@ziyoshams/graphs-in-javascript-cc0ed170b156
 \subsubsection{Implementación}
-En el grafo que se muestra en la \autoref{fig:graph-dfs}, se observa la representación del mismo en un árbol \acrshort{dfs}, donde un vértice \( u \) es padre de otro vértice \( v \) y \( u \) es un punto de articulación si satisface una de las siguientes dos condiciones:
+En el grafo que se muestra en la \autoref{fig:graph-dfs}, se observa la representación del mismo en un árbol \acrshort{dfs}, donde un vértice \( u \) es padre de otro vértice \( v \), y \( u \) es un punto de articulación si satisface una de las siguientes dos condiciones \cite{Abdul.2018}:
 \begin{enumerate}
 	\item \( u \) es la raíz del árbol DFS y tiene al menos dos hijos independientes (no están conectados entre sí).
 	\item Si \( u \) no es la raíz comprueba si \( low[v] \) es mayor o igual a \( disc[u] \).
@@ -100,5 +100,5 @@ En el grafo que se muestra en la \autoref{fig:graph-dfs}, se observa la represen
 	\label{fig:graph-dfs}
 \end{figure}
 
-El siguiente código en JavaScript, es la implementación del algoritmo de Tarjan. No sé recomienda ejecutarlo en ambientes de producción, se desarrollo en este lenguaje por su facilidad de ejecutar.
+El siguiente código en JavaScript, es la implementación del algoritmo de Tarjan. No sé recomienda ejecutarlo en ambientes de producción, se desarrollo en este lenguaje para ser probado en el lado del servidor (Node.js) y en el lado del cliente (Navegador Web Moderno).
 \lstinputlisting[label=JSTarjan, caption=Código en JavaScript, language=JavaScript]{document/ArticulationPoints/code/Tarjan.js}
